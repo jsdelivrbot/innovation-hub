@@ -1,8 +1,6 @@
 var Sequelize = require('sequelize');
 var express = require('express');
 var app = express();
-var React = require('react');
-var ReactDOM = require('react-dom');
 
 // var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
@@ -21,8 +19,8 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
-    host: process.env.DATABASE_HOST,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'postgres',
 
     pool: {
@@ -31,7 +29,7 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_
 	idle: 10000
     },
 });
-console.log('Node app is trying to connect to ' + process.env.DATABASE_NAME + " on host " + process.env.DATABASE_HOST);
+console.log('Node app is trying to connect to ' + process.env.DB_NAME + " on host " + process.env.DB_HOST);
 
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
@@ -67,26 +65,3 @@ app.get('/db', function(request, response)
 	    
 	    response.render('pages/db');
 	});
-
-app.get('/testreact', function(request, response)
-	{
-	    ReactDOM.render(
-		    <h1>Hello, world!</h1>,
-		document.getElementById('root')	    
-	    )
-	});
-
-// app.get('/db', function (request, response) {
-//   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-//     client.query('SELECT * FROM test_table', function(err, result) {
-//       done();
-//       if (err)
-//        { console.error(err); response.send("Error " + err); }
-//       else
-//        { response.render('pages/db', {results: result.rows} ); }
-//     });
-//   });
-// });
-
-// // Or you can simply use a connection uri
-// const sequelize = new Sequelize(process.env.DATABASE_URL);
