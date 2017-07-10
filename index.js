@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+
 var Database = require('./app/database');
+Database.connect();
 
 // var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
@@ -22,7 +24,6 @@ app.listen(app.get('port'), function() {
 app.get('/db', function(request, response)
 	{
 	    // force: true will drop the table if it already exists
-	    Database.connect();
 	    // User.findAll().then(users => {
 	    // 	console.log(users)
 	    // })

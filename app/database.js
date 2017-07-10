@@ -35,6 +35,10 @@ function Database()
 	    });
     }
 
+    this.createModel = function(name, hash)
+    {
+	const Model = this.sequelize.define(name, hash);
+    }
     // const User = sequelize.define('user', {
     // 	firstName: {
     // 	    type: Sequelize.STRING
