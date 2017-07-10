@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+var console = require('console');
 
 function Database()
 {
