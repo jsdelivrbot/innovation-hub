@@ -10,9 +10,11 @@
     
     <div class="container">
       <h2>Database Results</h2>
-      
-      <%= message %>
+
       <ul>
+	<% users.forEach(function(user) { %>
+	<li><%= user.firstName %> - <%= user.lastName %></li>
+	<% }); %>
       </ul>
       
     </div>
