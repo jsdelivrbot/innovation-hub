@@ -63,10 +63,6 @@ function Database()
 	    console.log('Fetching model ' + key + ' => ' + this.models[key]);
 	    this.models[key].model = sequelize.define(key, this.models[key].hash);
 	    this.create('users', {firstName: 'Felix', lastName: 'Ganz'});
-	    // this.models[key].model.sync({force: true}).then(() => {
-    	    // 	// Table created
-	
-	    // });
 	};
     }
 

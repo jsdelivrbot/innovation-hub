@@ -21,8 +21,11 @@ function DatabaseSubdomain(database)
 	},
 
 	{
-	    method: 'post', path: '/', view: 'pages/db',
-	    func: null
+	    method: 'get', path: '/createUser', view: 'pages/db',
+	    func: function(req, res) {
+		database.create('users', {req.query.firstName, req.query.lastName});
+		return res.redirect('/db');
+	    }
 	},
     ];
 };
