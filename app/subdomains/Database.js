@@ -18,7 +18,7 @@ function DatabaseSubdomain(database)
 		    var users = database.getModel('users');
 		    if (users != null)
 			users.findAll().then(users => {
-			    message = users;
+			    message = users[0];
 			    console.log(users);
 			});
 		    else
