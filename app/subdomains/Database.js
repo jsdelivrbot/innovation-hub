@@ -14,7 +14,13 @@ function DatabaseSubdomain(database)
 	    func: function(req, res) {
 		var message;
 		if (database.isConnected() == true)
-		    message = database.getModel('users').findAll();
+		{
+		    var users = database.getModel('users');
+		    if (users != null)
+			message = 'Users found !';
+		    else
+			message = 'Failed to load Model Users';
+		}
 		else
 		    message = 'Connection Failure';
 		res.render('../views/pages/db', {message: message});
