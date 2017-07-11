@@ -17,7 +17,7 @@ function DatabaseSubdomain(database)
 		    message = database.getModel('users').findAll();
 		else
 		    message = 'Connection Failure';
-		res.json('../views/pages/db', {message: message});
+		res.render('../views/pages/db', {message: message});
 	    }
 	},
 
