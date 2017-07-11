@@ -5,7 +5,7 @@ function Subdomain()
     this.getRoutes = function() {return this.routes;}
 
     // Define subdomain path
-    this.path = '/db';
+    this.path = 'db';
 
     // Define subdomain routes ()
     this.routes = [
