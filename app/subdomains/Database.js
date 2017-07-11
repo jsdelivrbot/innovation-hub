@@ -13,20 +13,12 @@ function DatabaseSubdomain(database)
 	    method: 'get', path: '/', view: 'pages/db',
 	    func: function(req, res) {
 		var message = 'Default Message Value';
-		if (database.isConnected() == true)
-		{
-		    var users = database.getModel('users');
-		    if (users != null)
-			users.findAll().then(users => {
-			    message = 'Name : ' + users[0].firstName + ' !';
-			});
-		    else
-			message = 'Failed to load Model Users';
-		}
-		else
-		    message = 'Connection Failure';
-		console.log('Message : ' + message);
-		res.render('../views/pages/db', {message: message});
+		var users = database.getModel('users');
+		users.findAll().then(users => {
+		    message = 'Name : ' + users[0].firstName + ' !';
+		    console.log('Message : ' + message);
+		    res.render('../views/pages/db', {message: message});
+		});
 	    }
 	},
 
