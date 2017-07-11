@@ -57,18 +57,19 @@ function Database()
 	console.log(this.models);
 	console.log(this.models['users']);
 	var sequelize = this.sequelize;
-	this.models.forEach(function(model) {
-	    console.log('Fetching model ' + model);
-	    model.model = sequelize.define(model, model.hash);
-	    model.model.sync({force: true}).then(() => {
-    	    	// Table created
-    	    	return model.model.create({
-    	    	    firstName: 'John',
-    	    	    lastName: 'Hancock'
-    	    	});
-	    });
-	    console.log('Model is ' + model.model);
-	});
+	this.models.keys().forEach(function(modelName)
+				   {
+				       console.log('Fetching model ' + model);
+				       model.model = sequelize.define(model, model.hash);
+				       model.model.sync({force: true}).then(() => {
+    	    				   // Table created
+    	    				   return model.model.create({
+    	    				       firstName: 'John',
+    	    				       lastName: 'Hancock'
+    	    				   });
+				       });
+				       console.log('Model is ' + model.model);
+				   });
     }
 
     
