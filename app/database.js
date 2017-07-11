@@ -52,6 +52,9 @@ function Database()
     this.create = function (key, object) {
 	this.models[key].model.create(object);
     }
+    this.removeById = function(key, id) {
+	this.models[key].model.destroy({where: { id: id}});
+    }
     
     this.defineModels = function()
     {

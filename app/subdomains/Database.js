@@ -28,6 +28,15 @@ function DatabaseSubdomain(database)
 		return res.redirect('/db');
 	    }
 	},
+
+	{
+	    method: 'get', path: '/deleteUser', view: 'pages/db',
+	    func: function(req, res) {
+		database.remove('users', req.query.id);
+		return res.redirect('/db');
+	    }
+	},
+
 	
     ];
 };
