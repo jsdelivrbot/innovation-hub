@@ -4,11 +4,11 @@ var Models = []
 
 Models['users'] = 
     {
+	model: null,
 	hash: {
 	    firstName: { type: Sequelize.STRING },
 	    lastName: { type: Sequelize.STRING }
 	},
-	model: null,
     };
 
 module.exports = Models;

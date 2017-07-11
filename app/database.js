@@ -55,16 +55,17 @@ function Database()
 	var sequelize = this.sequelize;
 	this.models.forEach(function(model) {
 	    model.model = sequelize.define(model, model.hash);
-	    // Model.sync({force: true}).then(() => {
-    	    // 	// Table created
-    	    // 	return Model.create({
-    	    // 	    firstName: 'John',
-    	    // 	    lastName: 'Hancock'
-    	    // 	});
-	    // });
+	    model.model.sync({force: true}).then(() => {
+    	    	// Table created
+    	    	return model.model.create({
+    	    	    firstName: 'John',
+    	    	    lastName: 'Hancock'
+    	    	});
+	    });
 	});
     }
     this.defineModels();
+    
     this.getModel = function(name)
     {
 	return this.models[name].model;
