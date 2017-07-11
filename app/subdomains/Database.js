@@ -10,12 +10,12 @@ function Subdomain()
     // Define subdomain routes ()
     this.routes = [
 	{
-	    method: 'get', path: '/', view: 'db',
+	    method: 'get', path: '/', view: 'pages/db',
 	    func: null
 	},
 
 	{
-	    method: 'post', path: '/', view: 'db',
+	    method: 'post', path: '/', view: 'pages/db',
 	    func: null
 	},
     ];
