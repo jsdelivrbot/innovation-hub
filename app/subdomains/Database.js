@@ -19,6 +19,7 @@ function DatabaseSubdomain(database)
 		    if (users != null)
 			users.findAll().then(users => {
 			    message = users;
+			    console.log(users);
 			});
 		    else
 			message = 'Failed to load Model Users';
