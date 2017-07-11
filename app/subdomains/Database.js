@@ -23,6 +23,8 @@ function DatabaseSubdomain(database)
 			    console.log(users[0]);
 			    console.log(users[0].firstName);
 			    console.log(message);
+			    res.render('../views/pages/db', {message: message});
+			    return ;
 			});
 		    else
 			message = 'Failed to load Model Users';
