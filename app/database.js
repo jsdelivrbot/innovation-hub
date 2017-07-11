@@ -49,13 +49,14 @@ function Database()
 	const Model = this.sequelize.define(name, hash);
     }
 
+    this.create = function (key, object) {
+	this.models[key].model.create(object);
+    }
+    
     this.defineModels = function()
     {
 	if (this.connected == false)
 	    return ;
-	console.log('Loading all MODELS ...');
-	console.log(this.models);
-	console.log(this.models['users']);
 	var sequelize = this.sequelize;
 	for (var key in this.models)
 	{
@@ -63,16 +64,11 @@ function Database()
 	    this.models[key].model = sequelize.define(key, this.models[key].hash);
 	    this.models[key].model.sync({force: true}).then(() => {
     	    	// Table created
-    	    	return this.models[key].model.create({
-    	    	    firstName: 'John',
-    	    	    lastName: 'Hancock'
-    	    	});
+		this.create('users', {firstName: 'Felix', lastName: 'Ganz'});
 	    });
-	    console.log('Model is ' + this.models[key].model);
 	};
     }
 
-    
     this.getModel = function(name)
     {
 	return this.models[name].model;
