@@ -54,6 +54,8 @@ function Database()
 	if (this.connected == false)
 	    return ;
 	console.log('Loading all MODELS ...');
+	console.log(this.models);
+	console.log(this.models['users']);
 	var sequelize = this.sequelize;
 	this.models.forEach(function(model) {
 	    console.log('Fetching model ' + model);
