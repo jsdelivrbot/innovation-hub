@@ -14,10 +14,10 @@ function DatabaseSubdomain(database)
 	    func: function(req, res) {
 		var message;
 		if (database.isConnected() == true)
-		    message = 'Ok'
+		    message = database.getModel('users').findAll();
 		else
-		    message = 'Connection Failure'
-		res.render('../views/pages/db', {message: message});
+		    message = 'Connection Failure';
+		res.json('../views/pages/db', {message: message});
 	    }
 	},
 

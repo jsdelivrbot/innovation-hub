@@ -7,7 +7,8 @@ var Routes = require('./app/routes')(app, Database);
 // Get Ready ! ---------------------------------+
 
 // Connect to Database
-Database.connect();
+if (Database.isConnected() == false)
+    Database.connect();
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));

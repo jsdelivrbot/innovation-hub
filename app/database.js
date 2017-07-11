@@ -2,6 +2,7 @@ function Database()
 {
     this.Sequelize = require('sequelize');
     this.console = require('console');
+    this.models = require('./models');
 
     this.name = process.env.DB_NAME;
     this.host = process.env.DB_HOST;
@@ -19,7 +20,7 @@ function Database()
 						 idle: 10000
 					     },
 					 });
-    this.getSequelize = function()
+    this.get = function()
     {
 	return this.sequelize;
     };
@@ -46,22 +47,29 @@ function Database()
     {
 	const Model = this.sequelize.define(name, hash);
     }
-    // const User = sequelize.define('user', {
-    // 	firstName: {
-    // 	    type: Sequelize.STRING
-    // 	},
-    // 	lastName: {
-    // 	    type: Sequelize.STRING
-    // 	}
-    // });
 
-    // User.sync({force: true}).then(() => {
-    // 	// Table created
-    // 	return User.create({
-    // 	    firstName: 'John',
-    // 	    lastName: 'Hancock'
-    // 	});
-    // });
+    this.defineModels = function()
+    {
+	if (this.connected == false)
+	    return ;
+	var sequelize = this.sequelize;
+	this.models.forEach(function(model) {
+	    model.model = sequelize.define(model, model.hash);
+	    // Model.sync({force: true}).then(() => {
+    	    // 	// Table created
+    	    // 	return Model.create({
+    	    // 	    firstName: 'John',
+    	    // 	    lastName: 'Hancock'
+    	    // 	});
+	    // });
+	});
+    }
+    this.defineModels();
+    this.getModel = function(name)
+    {
+	return this.models[name].model;
+    }
+    
 };
 
 module.exports = new Database;
