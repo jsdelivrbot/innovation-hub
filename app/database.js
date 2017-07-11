@@ -54,6 +54,7 @@ function Database()
 	    return ;
 	var sequelize = this.sequelize;
 	this.models.forEach(function(model) {
+	    console.log('Fetching model ' + model);
 	    model.model = sequelize.define(model, model.hash);
 	    model.model.sync({force: true}).then(() => {
     	    	// Table created
@@ -62,6 +63,7 @@ function Database()
     	    	    lastName: 'Hancock'
     	    	});
 	    });
+	    console.log('Model is ' + model.model);
 	});
     }
     this.defineModels();
