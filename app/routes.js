@@ -17,8 +17,7 @@ function Routes(app)
 	    subDomain.getRoutes().forEach(function(route)
 					  {
 					      if (route.func == null)
-						  route.func = function(req, res) {res.render(route.view);}
-					      console.log('Created route to ' + route.path);
+						  route.func = function(req, res) {res.render('../views/' + route.view);}
 					      if (route.method == 'get')
 						  router.get(route.path, route.func);
 					      if (route.method == 'post')
