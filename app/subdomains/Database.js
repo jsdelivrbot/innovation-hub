@@ -1,4 +1,4 @@
-function Subdomain()
+function DatabaseSubdomain(database)
 {
     // Allow this object to be used by generic routing
     this.getPath = function() {return this.path;}
@@ -11,7 +11,14 @@ function Subdomain()
     this.routes = [
 	{
 	    method: 'get', path: '/', view: 'pages/db',
-	    func: null
+	    func: function(req, res) {
+		var message;
+		if (database.isConnected() == true)
+		    message = 'Ok'
+		else
+		    message = 'Connection Failure'
+		res.render('../views/pages/db', {message: message});
+	    }
 	},
 
 	{
@@ -21,4 +28,7 @@ function Subdomain()
     ];
 };
 
-module.exports = new Subdomain();
+module.exports = function(database)
+{
+    return new DatabaseSubdomain(database);
+}

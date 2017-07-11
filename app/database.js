@@ -28,13 +28,20 @@ function Database()
     {
 	this.console.log('Node app is trying to connect to ' + this.name + " on host " + this.host);
 	this.sequelize.authenticate().then(() => {
+	    this.connected = true;
 	    this.console.log('Connection has been established successfully.');
 	})
 	    .catch(err => {
 		this.console.error('Unable to connect to the database:', err);
+		this.connected = false;
 	    });
     }
 
+    this.isConnected = function()
+    {
+	return this.connected;
+    }
+    
     this.createModel = function(name, hash)
     {
 	const Model = this.sequelize.define(name, hash);

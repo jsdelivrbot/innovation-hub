@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var Database = require('./app/database');
-var Routes = require('./app/routes')(app);
+var Routes = require('./app/routes')(app, Database);
 
 // Get Ready ! ---------------------------------+
 
