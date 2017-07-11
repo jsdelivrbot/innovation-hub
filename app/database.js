@@ -60,8 +60,8 @@ function Database()
 	for (var key in this.models)
 	{
 	    var model = this.models[key];
-	    console.log('Fetching model ' + model);
-	    model.model = sequelize.define(model, model.hash);
+	    console.log('Fetching model ' + key + model.hash);
+	    model.model = sequelize.define(key, model.hash);
 	    model.model.sync({force: true}).then(() => {
     	    	// Table created
     	    	return model.model.create({
