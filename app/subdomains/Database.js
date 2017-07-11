@@ -32,7 +32,7 @@ function DatabaseSubdomain(database)
 	{
 	    method: 'get', path: '/deleteUser', view: 'pages/db',
 	    func: function(req, res) {
-		database.remove('users', req.query.id);
+		database.removeById('users', req.query.id);
 		return res.redirect('/db');
 	    }
 	},
