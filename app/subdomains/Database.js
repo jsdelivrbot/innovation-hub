@@ -1,5 +1,3 @@
-var message;
-
 function DatabaseSubdomain(database)
 {
     // Allow this object to be used by generic routing
@@ -14,6 +12,7 @@ function DatabaseSubdomain(database)
 	{
 	    method: 'get', path: '/', view: 'pages/db',
 	    func: function(req, res) {
+		var message = 'Default Message Value';
 		if (database.isConnected() == true)
 		{
 		    var users = database.getModel('users');
