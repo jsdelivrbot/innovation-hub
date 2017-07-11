@@ -17,7 +17,7 @@ function DatabaseSubdomain(database)
 		{
 		    var users = database.getModel('users');
 		    if (users != null)
-			message = users.findAll({limit: 1}).firstName + ' hehehehehe';
+			message = users.findAll({limit: 1})[0].firstName + ' hehehehehe';
 		    else
 			message = 'Failed to load Model Users';
 		}
