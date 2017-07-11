@@ -59,17 +59,16 @@ function Database()
 	var sequelize = this.sequelize;
 	for (var key in this.models)
 	{
-	    var model = this.models[key];
-	    console.log('Fetching model ' + key + model.hash);
-	    model.model = sequelize.define(key, model.hash);
-	    model.model.sync({force: true}).then(() => {
+	    console.log('Fetching model ' + key + ' => ' + this.models[key]);
+	    this.models[key].model = sequelize.define(key, this.models[key].hash);
+	    this.models[key].model.sync({force: true}).then(() => {
     	    	// Table created
-    	    	return model.model.create({
+    	    	return this.models[key].model.create({
     	    	    firstName: 'John',
     	    	    lastName: 'Hancock'
     	    	});
 	    });
-	    console.log('Model is ' + model.model);
+	    console.log('Model is ' + this.models[key].model);
 	};
     }
 
