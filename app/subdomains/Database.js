@@ -23,7 +23,8 @@ function DatabaseSubdomain(database)
 	{
 	    method: 'get', path: '/createUser', view: 'pages/db',
 	    func: function(req, res) {
-		database.create('users', {'felix', 'prout'});
+		database.create('users', {firstName: req.query.firstName,
+					  lastName: req.query.lastName});
 		return res.redirect('/db');
 	    }
 	},
