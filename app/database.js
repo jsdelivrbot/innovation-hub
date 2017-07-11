@@ -31,6 +31,7 @@ function Database()
 	this.sequelize.authenticate().then(() => {
 	    this.connected = true;
 	    this.console.log('Connection has been established successfully.');
+	    this.defineModels();
 	})
 	    .catch(err => {
 		this.console.error('Unable to connect to the database:', err);
@@ -52,6 +53,7 @@ function Database()
     {
 	if (this.connected == false)
 	    return ;
+	console.log('Loading all MODELS ...');
 	var sequelize = this.sequelize;
 	this.models.forEach(function(model) {
 	    console.log('Fetching model ' + model);
@@ -66,7 +68,7 @@ function Database()
 	    console.log('Model is ' + model.model);
 	});
     }
-    this.defineModels();
+
     
     this.getModel = function(name)
     {
