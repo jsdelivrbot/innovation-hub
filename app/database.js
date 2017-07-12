@@ -72,7 +72,7 @@ function Database()
 	{
 	    console.log('Fetching model ' + key + ' => ' + this.models[key]);
 	    this.models[key].model = sequelize.define(key, this.models[key].hash);
-	    sequelize.sync({force: true});
+	    // sequelize.sync({force: true});
 	};
     }
 

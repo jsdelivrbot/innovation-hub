@@ -1,15 +1,16 @@
 import json
 import requests
 
-user = {
-    'firstName' : 'Felix',
-    'lastName'  : 'Ganz',
-    'promo'     : '2020',
+data = {
+    'name' : 'Cocreer',
+    'category'  : 'Temperature',
+    'value'     : '18',
+    'svalue'    : '',
 }
-r = requests.post('https://innovation-hub.herokuapp.com/user/create', user);
+r = requests.post('https://innovation-hub.herokuapp.com/hubData/create', data);
 print(r.text);
 
-r = requests.get('https://innovation-hub.herokuapp.com/user/');
-users = json.loads(r.text);
-for user in users:
-    print(user['id']);
+r = requests.get('https://innovation-hub.herokuapp.com/hubData/');
+datas = json.loads(r.text);
+for data in datas:
+    print(data);
