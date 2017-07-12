@@ -54,6 +54,8 @@ function Database()
 	this.models[key].model.create(object).then () => {
 	    return User.findOrCreate({where: object});
 	}
+    }
+    
     this.removeById = function(key, id) {
 	this.models[key].model.destroy({where: { id: id}});
     }
