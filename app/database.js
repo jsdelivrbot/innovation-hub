@@ -50,10 +50,11 @@ function Database()
 	this.models[name].model = this.sequelize.define(name, hash);
     }
 
-    this.create = function (key, object) {
-	this.models[key].model.create(object).then () => {
+    this.create = function (key, object)
+    {
+	this.models[key].model.create(object).then(() => {
 	    return User.findOrCreate({where: object});
-	}
+	});
     }
     
     this.removeById = function(key, id) {
