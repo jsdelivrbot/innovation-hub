@@ -15,7 +15,7 @@ function UsersController(database)
 	{
 	    method: 'get', path: '/', view: 'pages/user',
 	    func: function(req, res) {
-		var users = database.getModel('users');
+		var users = database.getModel('user');
 		users.findAll().then(u => {
 		    res.status(200).send(JSON.stringify(u));
 		});
