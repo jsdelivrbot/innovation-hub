@@ -53,8 +53,7 @@ function Database()
     this.create = function (key, object)
     {
 	this.models[key].model.create(object).then((user) => {
-	    console.log('User created is : ' + JSON.stringify(user))
-	    return JSON.stringify(user);
+	    return (JSON.stringify(user));
 	});
     }
 
