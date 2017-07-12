@@ -2,7 +2,9 @@ import json
 import requests
 
 data = {
-    'name' : 'Cocreer',
+    'name' : 'Felix',
+    'origin'    : 'Cocreer',
+    'unit'      : 'm2',
     'category'  : 'Temperature',
     'value'     : '18',
     'svalue'    : '',
