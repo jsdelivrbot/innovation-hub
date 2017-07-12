@@ -15,20 +15,10 @@ function UsersSubdomain(database)
 	{
 	    method: 'get', path: '/', view: 'pages/users',
 	    func: function(req, res) {
-		var message = 'Users : ';
 		var users = database.getModel('users');
-		users.findAll().then(users => {
-		    res.render('../views/pages/users', {users: users});
+		users.findAll().then(u => {
+		    res.status(200).send(JSON.stringify(u));
 		});
-	    }
-	},
-
-	{
-	    method: 'get', path: '/createUser', view: 'pages/users',
-	    func: function(req, res) {
-		database.create('users', {firstName: req.query.firstName,
-					  lastName: req.query.lastName});
-		return res.redirect('/users');
 	    }
 	},
 
@@ -39,14 +29,6 @@ function UsersSubdomain(database)
 		user.then((u) => {
 		    res.status(200).send(JSON.stringify(u));
 		});
-	    }
-	},
-
-	{
-	    method: 'get', path: '/deleteUser', view: 'pages/db',
-	    func: function(req, res) {
-		database.removeById('users', req.query.id);
-		return res.redirect('/db');
 	    }
 	},
 

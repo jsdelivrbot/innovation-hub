@@ -5,9 +5,16 @@ data = {
     'firstName' :       'Thomas',
     'lastName'  :       'Navennec',
 };
-r = requests.post('https://innovation-hub.herokuapp.com/users/createUser', data)
-print(r.text)
-user = json.loads(r.text);
-print(user['id']);
-r = requests.post('https://innovation-hub.herokuapp.com/users/deleteUser', {id: user['id']})
-print(r.text)
+
+r = requests.get('https://innovation-hub.herokuapp.com/users/');
+print(r.text);
+
+# r = requests.post('https://innovation-hub.herokuapp.com/users/createUser', data)
+# print(r.text)
+# user = json.loads(r.text);
+# print(user['id']);
+# r = requests.post('https://innovation-hub.herokuapp.com/users/deleteUser',
+#                   {
+#                       'id': user['id']
+#                   })
+# print(r.text)
