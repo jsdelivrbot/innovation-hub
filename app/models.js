@@ -11,4 +11,4 @@ Models['users'] =
 	},
     };
 
-module.exports = new Models;
+module.exports = Models;
