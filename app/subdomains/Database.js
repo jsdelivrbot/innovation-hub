@@ -1,4 +1,5 @@
 var request = require('request')
+var bodyParser = require('body-parser')
 
 function DatabaseSubdomain(database)
 {
@@ -34,19 +35,8 @@ function DatabaseSubdomain(database)
 	{
 	    method: 'post', path: '/createUser', view: 'pages/db',
 	    func: function(req, res) {
-		let rawData = '';
-		console.log('Retreiving JSON data ...')
-		res.on('data', (chunk) => { rawData += chunk; });
-		console.log('Raw : ' + rawData);
-		res.on('end', () => {
-		    try {
-			const parsedData = JSON.parse(rawData);
-			console.log(parsedData);
-			database.create('users', parsedData);
-		    } catch (e) {
-			console.error(e.message);
-		    }
-		});
+		console.log(bodyParser.json());
+		// database.create('users', parsedData);
 		return res.redirect('/db');
 	    }
 	},
