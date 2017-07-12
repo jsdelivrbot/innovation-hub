@@ -4,7 +4,7 @@ function Routes(app, database)
 {
     var controllersList =
 	[
-	    'users',
+	    'user',
 	    'hubData',
 	];
 

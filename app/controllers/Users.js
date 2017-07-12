@@ -8,12 +8,12 @@ function UsersController(database)
     this.getRoutes = function() {return this.routes;}
 
     // Define controller path
-    this.path = 'users';
+    this.path = 'user';
 
     // Define controller routes ()
     this.routes = [
 	{
-	    method: 'get', path: '/', view: 'pages/users',
+	    method: 'get', path: '/', view: 'pages/user',
 	    func: function(req, res) {
 		var users = database.getModel('users');
 		users.findAll().then(u => {
@@ -25,7 +25,7 @@ function UsersController(database)
 	{
 	    method: 'post', path: '/createUser', view: '',
 	    func: function(req, res) {
-		var user = database.create('users', req.body);
+		var user = database.create('user', req.body);
 		user.then((u) => {
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -38,7 +38,7 @@ function UsersController(database)
 		console.log(req.body);
 		if (req.body.id)
 		{
-		    database.removeById('users', req.body.id);
+		    database.removeById('user', req.body.id);
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else
