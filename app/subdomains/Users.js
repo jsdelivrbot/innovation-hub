@@ -37,7 +37,7 @@ function UsersSubdomain(database)
 	    func: function(req, res) {
 		if (JSON.stringify(req.body) === JSON.stringify(database.getModelHash('users'))) {
 		    user = database.create('users', req.body);
-		    res.status(200).send('[OK] User ' + user.id + ' ' + user.firstName + ' created');
+		    res.send(JSON.stringify(user));
 		}
 		else
 		    res.status(200).send('[KO] User cannot be created');

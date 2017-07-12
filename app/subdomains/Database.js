@@ -22,31 +22,6 @@ function DatabaseSubdomain(database)
 		});
 	    }
 	},
-
-	{
-	    method: 'get', path: '/createUser', view: 'pages/db',
-	    func: function(req, res) {
-		database.create('users', {firstName: req.query.firstName,
-					  lastName: req.query.lastName});
-		return res.redirect('/db');
-	    }
-	},
-
-	{
-	    method: 'post', path: '/createUser', view: 'pages/db',
-	    func: function(req, res) {
-		database.create('users', req.body);
-		res.status(200).send('User ' + req.body.firstName + ' created');
-	    }
-	},
-	
-	{
-	    method: 'get', path: '/deleteUser', view: 'pages/db',
-	    func: function(req, res) {
-		database.removeById('users', req.query.id);
-		return res.redirect('/db');
-	    }
-	},
     ];
 };
 
