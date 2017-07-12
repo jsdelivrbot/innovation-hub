@@ -69,7 +69,6 @@ function Database()
 	for (var key in this.models)
 	{
 	    console.log('Fetching model ' + key + ' => ' + this.models[key]);
-	    this.models[key].savedHash = this.models[key].hash;
 	    this.models[key].model = sequelize.define(key, this.models[key].hash);
 	};
     }
@@ -78,9 +77,10 @@ function Database()
     {
 	return this.models[name].model;
     }
-    this.getModelHash = function(name)
+    this.getmodelhash = function(name)
     {
-	return this.models[name].savedHash;
+	var models = require('./models');
+	return models[name].hash;
     }
     
 };
