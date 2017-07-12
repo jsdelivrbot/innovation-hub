@@ -1,5 +1,4 @@
 import json
-import re
 import requests
 
 data = {
@@ -8,6 +7,7 @@ data = {
 };
 r = requests.post('https://innovation-hub.herokuapp.com/users/createUser', data)
 print(r.text)
-# data.id = r.text.split()
-# r = requests.post('https://innovation-hub.herokuapp.com/db/deleteUser', data.id)
-# print(r.text)
+user = json.loads(r.text);
+print(user['id']);
+r = requests.post('https://innovation-hub.herokuapp.com/users/deleteUser', {id: user['id']})
+print(r.text)

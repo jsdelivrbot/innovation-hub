@@ -53,13 +53,8 @@ function UsersSubdomain(database)
 	{
 	    method: 'post', path: '/deleteUser', view: 'pages/db',
 	    func: function(req, res) {
-		if (req.body.id)
-		{
-		    database.removeById('users', req.body.id);
-		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
-		}
-		else
-		    res.status(200).send('[KO] User cannot be deleted.');
+		database.removeById('users', req.body.id);
+		res.status(200).send('[OK]');
 	    }
 	},
     ];
