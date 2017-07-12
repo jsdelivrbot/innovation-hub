@@ -77,7 +77,7 @@ function Database()
     {
 	return this.models[name].model;
     }
-    this.getmodelhash = function(name)
+    this.getModelHash = function(name)
     {
 	var models = require('./models');
 	return models[name].hash;
