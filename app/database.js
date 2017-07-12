@@ -43,7 +43,7 @@ function Database()
     {
 	return this.connected;
     }
-    
+
     this.createModel = function(name, hash)
     {
 	this.models[name].hash = hash;
@@ -53,16 +53,15 @@ function Database()
     this.create = function (key, object)
     {
 	this.models[key].model.create(object).then((user) => {
-	    console.log('User created is : ' + user);
-	    console.log('His ID is : ' + user.id);
-	    return user;    
+	    console.log('User created is : ' + user.get({plain: true}));
+	    return user.get({plain: true});
 	});
     }
-    
+
     this.removeById = function(key, id) {
 	this.models[key].model.destroy({where: { id: id}});
     }
-    
+
     this.defineModels = function()
     {
 	if (this.connected == false)
@@ -83,7 +82,7 @@ function Database()
     {
 	return this.models[name].hash;
     }
-    
+
 };
 
 module.exports = new Database;
