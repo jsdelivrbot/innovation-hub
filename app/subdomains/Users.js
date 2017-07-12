@@ -41,7 +41,7 @@ function UsersSubdomain(database)
 		}
 		else
 		{
-		    res.send(JSON.stringify(req.body));
+		    res.send(JSON.stringify(database.getModelHash('users')));
 		}
 	    }
 	},
