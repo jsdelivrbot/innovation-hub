@@ -4,8 +4,8 @@ function Routes(app, database)
 {
     var controllersList =
 	[
-	    'Users',
-	    'HubData',
+	    'users',
+	    'hubData',
 	];
 
     controllersList.forEach(function(name) {

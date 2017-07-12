@@ -15,7 +15,7 @@ function UsersController(database)
 	{
 	    method: 'get', path: '/', view: 'pages/users',
 	    func: function(req, res) {
-		var users = database.getModel('Users');
+		var users = database.getModel('users');
 		users.findAll().then(u => {
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -25,7 +25,7 @@ function UsersController(database)
 	{
 	    method: 'post', path: '/createUser', view: '',
 	    func: function(req, res) {
-		var user = database.create('Users', req.body);
+		var user = database.create('users', req.body);
 		user.then((u) => {
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -38,7 +38,7 @@ function UsersController(database)
 		console.log(req.body);
 		if (req.body.id)
 		{
-		    database.removeById('Users', req.body.id);
+		    database.removeById('users', req.body.id);
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else

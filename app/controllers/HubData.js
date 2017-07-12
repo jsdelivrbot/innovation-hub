@@ -15,7 +15,7 @@ function HubDataController(database)
 	{
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
-		var hubdata = database.getModel('HubData');
+		var hubdata = database.getModel('hubData');
 		hubdata.findAll().then(hd => {
 		    res.status(200).send(JSON.stringify(hd));
 		});
@@ -25,7 +25,7 @@ function HubDataController(database)
 	{
 	    method: 'post', path: '/add', view: '',
 	    func: function(req, res) {
-		var data = database.create('HubData', req.body);
+		var data = database.create('hubData', req.body);
 		data.then((u) => {
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -38,7 +38,7 @@ function HubDataController(database)
 		console.log(req.body);
 		if (req.body.id)
 		{
-		    database.removeById('HubData', req.body.id);
+		    database.removeById('hubData', req.body.id);
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else

@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 var Models = []
 
-Models['Users'] = 
+Models['users'] = 
     {
 	model: null,
 	hash: {
@@ -12,7 +12,7 @@ Models['Users'] =
 	},
     };
 
-Models['HubData'] =
+Models['hubData'] =
     {
 	model: null,
 	hash: {
