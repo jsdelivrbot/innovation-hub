@@ -52,11 +52,14 @@ function Database()
 
     this.create = function (key, object)
     {
+	let user;
 	this.models[key].model.create(object).then(() => {
-	    let user;
-	    this.models[key].model.findOrCreate({where: object}).then((found) => { user = found; });
-	    return user;
+	    this.models[key].model.findOrCreate({where: object}).then(
+		(found) => {
+		    user = found;
+		});
 	});
+	return user;
     }
     
     this.removeById = function(key, id) {
