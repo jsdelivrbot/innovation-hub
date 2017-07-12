@@ -69,5 +69,5 @@ function UsersSubdomain(database)
 
 module.exports = function(database)
 {
-    return new DatabaseSubdomain(database);
+    return new UsersSubdomain(database);
 }
