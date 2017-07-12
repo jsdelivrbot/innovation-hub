@@ -7,7 +7,9 @@ data = {
 };
 
 r = requests.get('https://innovation-hub.herokuapp.com/users/');
-print(r.text);
+users = json.loads(r.text);
+for user in users:
+    print(user['id']);
 
 # r = requests.post('https://innovation-hub.herokuapp.com/users/createUser', data)
 # print(r.text)

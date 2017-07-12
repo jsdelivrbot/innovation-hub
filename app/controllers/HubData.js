@@ -1,44 +1,44 @@
 var request = require('request')
 var bodyParser = require('body-parser')
 
-function UsersSubdomain(database)
+function HubDataController(database)
 {
     // Allow this object to be used by generic routing
     this.getPath = function() {return this.path;}
     this.getRoutes = function() {return this.routes;}
 
-    // Define subdomain path
-    this.path = 'users';
+    // Define controller path
+    this.path = 'hubdata';
 
-    // Define subdomain routes ()
+    // Define controller routes ()
     this.routes = [
 	{
-	    method: 'get', path: '/', view: 'pages/users',
+	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
-		var users = database.getModel('users');
-		users.findAll().then(u => {
+		var hubdata = database.getModel('HubData');
+		hubdata.findAll().then(hd => {
+		    res.status(200).send(JSON.stringify(hd));
+		});
+	    }
+	},
+
+	{
+	    method: 'post', path: '/add', view: '',
+	    func: function(req, res) {
+		var data = database.create('HubData', req.body);
+		data.then((u) => {
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
 	},
 
 	{
-	    method: 'post', path: '/createUser', view: '',
-	    func: function(req, res) {
-		var user = database.create('users', req.body);
-		user.then((u) => {
-		    res.status(200).send(JSON.stringify(u));
-		});
-	    }
-	},
-
-	{
-	    method: 'post', path: '/deleteUser', view: 'pages/db',
+	    method: 'post', path: '/remove', view: '',
 	    func: function(req, res) {
 		console.log(req.body);
 		if (req.body.id)
 		{
-		    database.removeById('users', req.body.id);
+		    database.removeById('HubData', req.body.id);
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else
@@ -50,5 +50,5 @@ function UsersSubdomain(database)
 
 module.exports = function(database)
 {
-    return new UsersSubdomain(database);
+    return new HubDataController(database);
 }

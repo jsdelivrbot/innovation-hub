@@ -2,13 +2,25 @@ var Sequelize = require('sequelize');
 
 var Models = []
 
-Models['users'] = 
+Models['Users'] = 
     {
 	model: null,
 	hash: {
-	    firstName: { type: Sequelize.STRING },
-	    lastName: { type: Sequelize.STRING }
+	    firstName: { type: Sequelize.STRING, defaultValue: 'FirstName' },
+	    lastName: { type: Sequelize.STRING, defaultValue: 'LastName' },
+	    promo: { type: Sequelize.INTEGER, defaultvalue: 2020 },
 	},
     };
+
+Models['HubData'] =
+    {
+	model: null,
+	hash: {
+	    name: { type: Sequelize.STRING, defaultValue: 'DefaultName' },
+	    category: { type: Sequelize.STRING, defaultValue: 'Undefined' },
+	    value: { type: Sequelize.INTEGER, defaultValue: -1 },
+	    svalue: { type: Sequelize.STRING, defaultValue: 'Undefined' },
+	},
+    }
 
 module.exports = Models;

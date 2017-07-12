@@ -2,18 +2,18 @@ var express = require('express');
 
 function Routes(app, database)
 {
-    var subDomainsList =
+    var controllersList =
 	[
-	    'Database',
 	    'Users',
+	    'HubData',
 	];
 
-    subDomainsList.forEach(function(name) {
-	console.log('Trying to create route for subdomain ' + name);
-	var subDomain = require('./subdomains/' + name)(database);
+    controllersList.forEach(function(name) {
+	console.log('Trying to create route for controller ' + name);
+	var controller = require('./controllers/' + name)(database);
 	var router = express.Router();
 
-	subDomain.getRoutes().forEach(function(route)
+	controller.getRoutes().forEach(function(route)
 				      {
 					  if (route.func == null)
 					      route.func = function(req, res) {res.render('../views/' + route.view);}
@@ -26,7 +26,7 @@ function Routes(app, database)
 					  if (route.method == 'delete')
 					      router.delete(route.path, route.func);
 				      });
-	app.use('/' + subDomain.getPath(), router);
+	app.use('/' + controller.getPath(), router);
     });
 };
 
