@@ -1,39 +1,61 @@
-# node-js-getting-started
+# Welcome to the innovation-hub wiki!
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+## API
+The Epitech Innovation Hub API is used to send and receive data (physical or virtual) from the Innovation Hub Server.
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+### How to : an example
 
-## Running Locally
+You can use any language you want, but we'd recommand using a high level language such as Python or Ruby.
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+```python
+#!/bin/python
+import json
+import requests
 
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
+r = requests.get('https://innovation-hub.herokuapp.com/users/'); # get all users as json
+users = json.loads(r.text); # transform json to array of objects
+for user in users: # for each user
+    print(user['id']); # print its id
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+This code snippet will give
 
-## Deploying to Heroku
-
+```ruby
+1
+2
+3
+4
+5
+6
+7
 ```
-$ heroku create
-$ git push heroku master
-$ heroku open
+
+## Models
+
+Through the Epitech Innovation Hub API you can collect and send data regarding different objects. For each model you can get a list, add an element or remove one by Id. Keep in mind this is a beta version of the API, more features will be available in the future.
+
++ user
+```python
+firstName : String
+lastName : String
+promo : Integer
 ```
-or
++ hubData
+```python
+name: { type: Sequelize.STRING, defaultValue: 'DefaultName' },
+category: { type: Sequelize.STRING, defaultValue: 'Undefined' }, # What data category is that ?
+unit: { type: Sequelize.STRING, defaultValue: 'Undefined' }, # What is the value's unit ?
+value: { type: Sequelize.INTEGER, defaultValue: -1 }, # Value as integer
+svalue: { type: Sequelize.STRING, defaultValue: 'Undefined' }, # If your data is not an integer, used Stringvalue
+```
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+For each model you can :
++ get : /model -> Get all elements 
++ post : /model/create -> Create a new element
++ post : /model/delete -> Delete an element by ID
 
-## Documentation
+## View
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+For now data is viewed through a standard HTML Table. Soon you will be able to declare your own Model and Views through the API. Please be patient ! :)
+___
+This is only the beginning. Feel free to contact me on Github or by email : felix.ganz@epitech.eu
