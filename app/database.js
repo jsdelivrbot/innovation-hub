@@ -53,8 +53,8 @@ function Database()
     this.create = function (key, object)
     {
 	this.models[key].model.create(object).then(() => {
-	    console.log(this.models[key].model.findOrCreate({where: object}));
-	    return this.models[key].model.findOrCreate({where: object});
+	    this.models[key].model.findOrCreate({where: object}).then ( (user) => {console.log(user)});
+	    this.models[key].model.findOrCreate({where: object}).then ( (user) => { return user; });
 	});
     }
     
