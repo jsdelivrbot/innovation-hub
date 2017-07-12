@@ -13,6 +13,11 @@ function Database()
 					 {
 					     host: this.host,
 					     dialect: 'postgres',
+					     ssl: true,
+					     dialectOptions:{
+						 ssl:{
+						     require: true
+						 }},
 
 					     pool: {
 						 max: 5,
