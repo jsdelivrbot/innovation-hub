@@ -54,6 +54,7 @@ function Database()
     {
 	this.models[key].model.create(object).then((user) => {
 	    console.log('User created is : ' + user);
+	    console.log('His ID is : ' + user.id);
 	    return user;    
 	});
     }
