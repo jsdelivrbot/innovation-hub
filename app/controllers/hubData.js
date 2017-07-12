@@ -8,7 +8,7 @@ function HubDataController(database)
     this.getRoutes = function() {return this.routes;}
 
     // Define controller path
-    this.path = 'hubdata';
+    this.path = 'hubData';
 
     // Define controller routes ()
     this.routes = [
@@ -23,7 +23,7 @@ function HubDataController(database)
 	},
 
 	{
-	    method: 'post', path: '/add', view: '',
+	    method: 'post', path: '/create', view: '',
 	    func: function(req, res) {
 		var data = database.create('hubData', req.body);
 		data.then((u) => {
@@ -33,7 +33,7 @@ function HubDataController(database)
 	},
 
 	{
-	    method: 'post', path: '/remove', view: '',
+	    method: 'post', path: '/delete', view: '',
 	    func: function(req, res) {
 		console.log(req.body);
 		if (req.body.id)
