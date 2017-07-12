@@ -23,7 +23,7 @@ function UsersController(database)
 	},
 
 	{
-	    method: 'post', path: '/createUser', view: '',
+	    method: 'post', path: '/create', view: '',
 	    func: function(req, res) {
 		var user = database.create('user', req.body);
 		user.then((u) => {
@@ -33,7 +33,7 @@ function UsersController(database)
 	},
 
 	{
-	    method: 'post', path: '/deleteUser', view: 'pages/db',
+	    method: 'post', path: '/delete', view: 'pages/db',
 	    func: function(req, res) {
 		console.log(req.body);
 		if (req.body.id)
