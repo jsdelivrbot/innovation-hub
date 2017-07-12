@@ -5,8 +5,5 @@ data = {
     'firstName' :       'JESUIS',
     'lastName'  :       'JSON',
 };
-data_json = json.dumps(data)
-payload = {'json_payload': data_json, 'apikey': 'myApiKey'}
-r = requests.post('https://innovation-hub.herokuapp.com/db/createUser',
-                  data=payload)
+r = requests.post('https://innovation-hub.herokuapp.com/db/createUser', data)
 print(r)
