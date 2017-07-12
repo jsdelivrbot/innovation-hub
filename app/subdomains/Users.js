@@ -37,6 +37,7 @@ function UsersSubdomain(database)
 	    func: function(req, res) {
 		var user = database.create('users', req.body);
 		console.log('User returned by database is : ' + user);
+		console.log('User id : ' + user.id);
 		res.send(JSON.stringify(user));
 	    }
 	},
