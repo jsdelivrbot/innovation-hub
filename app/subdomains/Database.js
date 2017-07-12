@@ -36,6 +36,7 @@ function DatabaseSubdomain(database)
 	    method: 'post', path: '/createUser', view: 'pages/db',
 	    func: function(req, res) {
 		console.log(bodyParser.json());
+		console.log(req.body);
 		// database.create('users', parsedData);
 		return res.redirect('/db');
 	    }
