@@ -17,6 +17,8 @@ Models['hubData'] =
 	model: null,
 	hash: {
 	    name: { type: Sequelize.STRING, defaultValue: 'DefaultName' },
+	    origin: { type: Sequelize.STRING, defaultValue: 'Innovation Hub' },
+	    unit: { type: Sequelize.STRING, defaultValue: 'Undefined' },
 	    category: { type: Sequelize.STRING, defaultValue: 'Undefined' },
 	    value: { type: Sequelize.INTEGER, defaultValue: -1 },
 	    svalue: { type: Sequelize.STRING, defaultValue: 'Undefined' },

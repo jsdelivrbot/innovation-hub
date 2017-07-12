@@ -52,10 +52,6 @@ function Database()
 
     this.create = function (key, object)
     {
-	//     .then((user) => {
-	//     result = JSON.stringify(user);
-	//     console.log(result);
-	// });
 	return this.models[key].model.create(object);
     }
 
@@ -72,7 +68,7 @@ function Database()
 	{
 	    console.log('Fetching model ' + key + ' => ' + this.models[key]);
 	    this.models[key].model = sequelize.define(key, this.models[key].hash);
-	    // sequelize.sync({force: true});
+	    sequelize.sync({force: true});
 	};
     }
 
