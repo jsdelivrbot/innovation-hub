@@ -36,7 +36,7 @@ function UsersSubdomain(database)
 	    method: 'post', path: '/createUser', view: '',
 	    func: function(req, res) {
 		var user = database.create('users', req.body);
-		res.send(JSON.stringify(user));
+		res.status(200).send(user);
 	    }
 	},
 
