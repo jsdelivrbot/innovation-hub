@@ -40,7 +40,9 @@ function UsersSubdomain(database)
 		    res.send(JSON.stringify(user));
 		}
 		else
-		    res.status(200).send('[KO] User cannot be created');
+		{
+		    res.send(JSON.stringify(req.body));
+		}
 	    }
 	},
 
