@@ -5,6 +5,7 @@ function Routes(app, database)
     var subDomainsList =
 	[
 	    'Database',
+	    'Users',
 	];
 
     subDomainsList.forEach(function(name) {

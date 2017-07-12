@@ -2,8 +2,8 @@ import json
 import requests
 
 data = {
-    'firstName' :       'JESUIS',
-    'lastName'  :       'JSON',
+    'firstName' :       'Thomas',
+    'lastName'  :       'Navennec',
 };
 r = requests.post('https://innovation-hub.herokuapp.com/db/createUser', data)
-print(r)
+print(r.text)

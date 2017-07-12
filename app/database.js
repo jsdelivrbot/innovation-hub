@@ -46,7 +46,8 @@ function Database()
     
     this.createModel = function(name, hash)
     {
-	const Model = this.sequelize.define(name, hash);
+	this.models[name].hash = hash;
+	this.models[name].model = this.sequelize.define(name, hash);
     }
 
     this.create = function (key, object) {
@@ -71,6 +72,10 @@ function Database()
     this.getModel = function(name)
     {
 	return this.models[name].model;
+    }
+    this.getModelHash = function(name)
+    {
+	return this.models[name].hash;
     }
     
 };
