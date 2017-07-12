@@ -52,12 +52,11 @@ function Database()
 
     this.create = function (key, object)
     {
-	var result;
-	this.models[key].model.create(object).then((user) => {
-	    result = JSON.stringify(user);
-	});
-	console.log('In create function : ' + result);
-	return result;
+	//     .then((user) => {
+	//     result = JSON.stringify(user);
+	//     console.log(result);
+	// });
+	return this.models[key].model.create(object);
     }
 
     this.removeById = function(key, id) {
