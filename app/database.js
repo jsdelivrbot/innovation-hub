@@ -53,7 +53,7 @@ function Database()
     this.create = function (key, object)
     {
 	this.models[key].model.create(object).then(() => {
-	    return User.findOrCreate({where: object});
+	    return this.models[key].model.findOrCreate({where: object});
 	});
     }
     
