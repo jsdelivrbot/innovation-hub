@@ -46,7 +46,7 @@ function DatabaseSubdomain(database)
 		    }
 		});
 		return res.redirect('/db');
-	    };
+	    }
 	},
 	
 	{
