@@ -1,3 +1,5 @@
+var request = require('request')
+
 function DatabaseSubdomain(database)
 {
     // Allow this object to be used by generic routing
@@ -30,14 +32,30 @@ function DatabaseSubdomain(database)
 	},
 
 	{
+	    method: 'post', path: '/createUser', view: 'pages/db',
+	    func: function(req, res) {
+		let rawData = '';
+		res.on('data', (chunk) => { rawData += chunk; });
+		res.on('end', () => {
+		    try {
+			const parsedData = JSON.parse(rawData);
+			console.log(parsedData);
+			database.create('users', parsedData);
+		    } catch (e) {
+			console.error(e.message);
+		    }
+		});
+		return res.redirect('/db');
+	    };
+	},
+	
+	{
 	    method: 'get', path: '/deleteUser', view: 'pages/db',
 	    func: function(req, res) {
 		database.removeById('users', req.query.id);
 		return res.redirect('/db');
 	    }
 	},
-
-	
     ];
 };
 

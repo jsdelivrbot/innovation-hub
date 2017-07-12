@@ -15,6 +15,7 @@
       "pg": "latest",
       "react": "^15.6.1",
       "react-dom": "^15.6.1",
+      "request": "^2.81.0",
       "sequelize": "^4.2.1"
    },
    "repository": {
