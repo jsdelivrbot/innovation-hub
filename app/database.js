@@ -57,7 +57,7 @@ function Database()
 
     this.create = function (key, object)
     {
-	return this.models[key].model.findOrCreate(object);
+	return this.models[key].model.findOrCreate({where: object});
     }
 
     this.removeById = function(key, id) {
