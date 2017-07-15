@@ -8,7 +8,9 @@ data = {
     'firstName' : 'Felix',
     'lastName' : 'Ganz',
     'promo' : '2020',
-    'imgurl' : 'https://cdn.local.epitech.eu/userprofil/profilview/felix.ganz.jpg'
+    'imgurl' : 'https://cdn.local.epitech.eu/userprofil/profilview/felix.ganz.jpg',
+    'title' : 'Lord',
+    'rank' : '100',
 }
 
 r = requests.post(host + 'user/create', data);
