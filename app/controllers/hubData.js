@@ -28,6 +28,7 @@ function HubDataController(database)
 	    func: function(req, res) {
 		var data = database.create('hubData', req.body);
 		data.then((u) => {
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
@@ -40,10 +41,14 @@ function HubDataController(database)
 		if (req.body.id)
 		{
 		    database.removeById('hubData', req.body.id);
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else
+		{
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send('[KO] User cannot be deleted.');
+		}
 	    }
 	},
     ];

@@ -17,6 +17,7 @@ function UsersController(database)
 	    func: function(req, res) {
 		var users = database.getModel('user');
 		users.findAll().then(u => {
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
@@ -27,6 +28,7 @@ function UsersController(database)
 	    func: function(req, res) {
 		var user = database.create('user', req.body);
 		user.then((u) => {
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
@@ -39,10 +41,14 @@ function UsersController(database)
 		if (req.body.id)
 		{
 		    database.removeById('user', req.body.id);
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
 		else
+		{
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send('[KO] User cannot be deleted.');
+		}
 	    }
 	},
     ];
