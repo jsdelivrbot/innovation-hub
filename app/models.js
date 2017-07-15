@@ -9,6 +9,7 @@ Models['user'] =
 	    firstName: { type: Sequelize.STRING, defaultValue: 'FirstName' },
 	    lastName: { type: Sequelize.STRING, defaultValue: 'LastName' },
 	    promo: { type: Sequelize.INTEGER, defaultvalue: 2020 },
+	    imgurl: { type: Sequelize.STRING, defaultvalue: 'https://vignette2.wikia.nocookie.net/mafiagame/images/2/23/Unknown_Person.png/revision/latest?cb=20151119092211'},
 	},
     };
 
