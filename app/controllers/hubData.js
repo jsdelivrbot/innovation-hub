@@ -17,7 +17,7 @@ function HubDataController(database)
 	    func: function(req, res) {
 		var hubdata = database.getModel('hubData');
 		hubdata.findAll().then(hd => {
-		    res.addHeader("Access-Control-Allow-Origin", "*");
+		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(hd));
 		});
 	    }
