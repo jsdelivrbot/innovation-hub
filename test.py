@@ -5,12 +5,12 @@ host = 'https://innovation-hub.herokuapp.com/'
 # host = 'http://localhost:5000/'
 
 data = {
-    'firstName' : 'Felix',
-    'lastName' : 'Ganz',
+    'firstName' : 'Michael',
+    'lastName' : 'Halfail',
     'promo' : '2020',
-    'imgurl' : 'https://cdn.local.epitech.eu/userprofil/profilview/felix.ganz.jpg',
-    'title' : 'Lord',
-    'rank' : '100',
+    'imgurl' : 'https://cdn.local.epitech.eu/userprofil/profilview/michael.halfon.jpg',
+    'title' : 'Peon',
+    'rank' : '0',
 }
 
 r = requests.post(host + 'user/create', data);
