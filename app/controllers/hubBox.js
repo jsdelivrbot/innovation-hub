@@ -1,56 +1,33 @@
 var request = require('request')
 var bodyParser = require('body-parser')
 
-function UsersController(database)
+function hubBoxController(database)
 {
     // Allow this object to be used by generic routing
     this.getPath = function() {return this.path;}
     this.getRoutes = function() {return this.routes;}
 
     // Define controller path
-    this.path = 'user';
+    this.path = 'hubBox';
 
     // Define controller routes ()
     this.routes = [
 	{
-	    method: 'get', path: '/', view: 'pages/user',
+	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
-		var users = database.getModel('user');
-		users.findAll().then(u => {
+		var hubBox = database.getModel('hubBox');
+		hubBox.findAll().then(hd => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
-		    res.status(200).send(JSON.stringify(u));
+		    res.status(200).send(JSON.stringify(hd));
 		});
 	    }
 	},
 
-	{
-	    method: 'get', path: '/present', view: '',
-	    func: function(req, res) {
-		var users = database.getModel('user');
-		users.findAll(where: {present: true}).then(u => {
-		    res.setHeader("Access-Control-Allow-Origin", "*");
-		    res.status(200).send(JSON.stringify(u));
-		});
-	    }
-	}
-
-	{
-	    method: 'get', path: '/absent', view: '',
-	    func: function(req, res) {
-		var users = database.getModel('user');
-		users.findAll(where: {present: false}).then(u => {
-		    res.setHeader("Access-Control-Allow-Origin", "*");
-		    res.status(200).send(JSON.stringify(u));
-		});
-	    }
-	}
-
-	
 	{
 	    method: 'post', path: '/create', view: '',
 	    func: function(req, res) {
-		var user = database.create('user', req.body);
-		user.then((u) => {
+		var data = database.create('hubBox', req.body);
+		data.then((u) => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -58,12 +35,12 @@ function UsersController(database)
 	},
 
 	{
-	    method: 'post', path: '/delete', view: 'pages/db',
+	    method: 'post', path: '/delete', view: '',
 	    func: function(req, res) {
 		console.log(req.body);
 		if (req.body.id)
 		{
-		    database.removeById('user', req.body.id);
+		    database.removeById('hubBox', req.body.id);
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
 		}
@@ -79,5 +56,5 @@ function UsersController(database)
 
 module.exports = function(database)
 {
-    return new UsersController(database);
+    return new hubBoxController(database);
 }

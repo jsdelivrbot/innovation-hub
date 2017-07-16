@@ -2,11 +2,9 @@ var express = require('express');
 
 function Routes(app, database)
 {
-    var controllersList =
-	[
-	    'user',
-	    'hubData',
-	];
+    var controllersList = []
+    var models = require('./models');
+    Object.keys(models).forEach(model=>controllersList.push(model));
 
     controllersList.forEach(function(name) {
 	console.log('Trying to create route for controller ' + name);
