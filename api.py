@@ -15,10 +15,15 @@ data = {
     'there' : 'true',
 }
 
-r = requests.post(host + 'user/create', data);
+r = requests.post(host + 'user/leave', {'id': '2'});
 print(r.text);
 
-r = requests.get(host + 'user/');
-datas = json.loads(r.text);
-for data in datas:
-    print(data);
+# r = requests.post(host + 'user/create', data);
+# print("Create : ");
+# print(r.text);
+
+# print("Get : ");
+# r = requests.get(host + 'user/');
+# datas = json.loads(r.text);
+# for data in datas:
+#     print(data);

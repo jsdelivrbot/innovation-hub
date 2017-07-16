@@ -61,7 +61,7 @@ function Database()
     }
 
     this.getById = function(key, id) {
-	this.models[key].model.find({where: {id: id}});
+	return this.models[key].model.find({where: {id: id}});
     }
     
     this.removeById = function(key, id) {
