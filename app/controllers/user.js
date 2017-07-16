@@ -37,6 +37,7 @@ function UsersController(database)
 			    user.there = true;
 			    res.status(200).send('[OK] User ' + req.body.firstName + ' has arrived.');	
 			}
+			user.save();
 		    });
 		}
 		else
@@ -60,6 +61,7 @@ function UsersController(database)
 			    user.there = false;
 			    res.status(200).send('[OK] User ' + req.body.firstName + ' has left.');	
 			}
+			user.save();
 		    });
 		}
 		else
