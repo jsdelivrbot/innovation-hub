@@ -30,11 +30,11 @@ function UsersController(database)
 		if (req.body.id)
 		{
 		    database.getById('user', req.body.id).then(user => {
-			if (user.present == true)
+			if (user.there == true)
 			    res.status(200).send('[KO] User ' + req.body.firstName + ' is already here.');
 			else
 			{
-			    user.present = true;
+			    user.there = true;
 			    res.status(200).send('[OK] User ' + req.body.firstName + ' has arrived.');	
 			}
 		    });
@@ -53,11 +53,11 @@ function UsersController(database)
 		if (req.body.id)
 		{
 		    database.getById('user', req.body.id).then(user => {
-			if (user.present == false)
+			if (user.there == false)
 			    res.status(200).send('[KO] User ' + req.body.firstName + ' is not here.');
 			else
 			{
-			    user.present = false;
+			    user.there = false;
 			    res.status(200).send('[OK] User ' + req.body.firstName + ' has left.');	
 			}
 		    });
@@ -74,7 +74,7 @@ function UsersController(database)
 	    method: 'get', path: '/present', view: '',
 	    func: function(req, res) {
 		var users = database.getModel('user');
-		users.findAll({where: {present: true}}).then(u => {
+		users.findAll({where: {there: true}}).then(u => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
@@ -85,7 +85,7 @@ function UsersController(database)
 	    method: 'get', path: '/absent', view: '',
 	    func: function(req, res) {
 		var users = database.getModel('user');
-		users.findAll({where: {present: false}}).then(u => {
+		users.findAll({where: {there: false}}).then(u => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
