@@ -60,6 +60,10 @@ function Database()
 	return this.models[key].model.findOrCreate({where: object});
     }
 
+    this.getById = function(key, id) {
+	this.models[key].model.find({where: {id: id}});
+    }
+    
     this.removeById = function(key, id) {
 	this.models[key].model.destroy({where: { id: id}});
     }

@@ -24,27 +24,73 @@ function UsersController(database)
 	},
 
 	{
+	    method:'post', path: '/arrive', view: '',
+	    func: function(req, res) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		if (req.body.id)
+		{
+		    database.getById('user', req.body.id).then(user => {
+			if (user.present == true)
+			    res.status(200).send('[KO] User ' + req.body.firstName + ' is already here.');
+			else
+			{
+			    user.present = true;
+			    res.status(200).send('[OK] User ' + req.body.firstName + ' has arrived.');	
+			}
+		    });
+		}
+		else
+		{
+		    res.status(200).send('[KO] User not found.');
+		}
+	    }
+	},
+
+	{
+	    method:'post', path: '/leave', view: '',
+	    func: function(req, res) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		if (req.body.id)
+		{
+		    database.getById('user', req.body.id).then(user => {
+			if (user.present == false)
+			    res.status(200).send('[KO] User ' + req.body.firstName + ' is not here.');
+			else
+			{
+			    user.present = false;
+			    res.status(200).send('[OK] User ' + req.body.firstName + ' has left.');	
+			}
+		    });
+		}
+		else
+		{
+		    res.status(200).send('[KO] User not found.');
+		}
+	    }
+	},
+
+	
+	{
 	    method: 'get', path: '/present', view: '',
 	    func: function(req, res) {
 		var users = database.getModel('user');
-		users.findAll(where: {present: true}).then(u => {
+		users.findAll({where: {present: true}}).then(u => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
-	}
+	},
 
 	{
 	    method: 'get', path: '/absent', view: '',
 	    func: function(req, res) {
 		var users = database.getModel('user');
-		users.findAll(where: {present: false}).then(u => {
+		users.findAll({where: {present: false}}).then(u => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
 	    }
-	}
-
+	},
 	
 	{
 	    method: 'post', path: '/create', view: '',
@@ -60,7 +106,6 @@ function UsersController(database)
 	{
 	    method: 'post', path: '/delete', view: 'pages/db',
 	    func: function(req, res) {
-		console.log(req.body);
 		if (req.body.id)
 		{
 		    database.removeById('user', req.body.id);
