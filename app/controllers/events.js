@@ -88,13 +88,13 @@ function EventsController(database)
 	    func: function(req, res) {
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
-		var end = new Date(date.getTime() + 86400000);
+		var end = new Date(date.getTime() + 86400000*2);
+		
 		this.publicGoogleCalendar.getEvents(function(err, events) {
 		    if (err) { return console.log(err.message); }
 		    var result = [];
 		    for (var event in events)
 		    {
-			console.log(events[event]);
 			if (events[event].start > date.getTime() && events[event].start.getTime() < end.getTime())
 			    result.push(events[event]);
 		    }

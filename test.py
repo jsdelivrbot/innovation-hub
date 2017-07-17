@@ -1,8 +1,8 @@
 import json
 import requests
 
-# host = 'https://innovation-hub.herokuapp.com/'
-host = 'http://localhost:5000/'
+host = 'https://innovation-hub.herokuapp.com/'
+# host = 'http://localhost:5000/'
 
 # data = {
 #     'firstName' : 'Michael',
