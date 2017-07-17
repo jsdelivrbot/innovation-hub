@@ -18,10 +18,10 @@ function EventsController(database)
 	    ['https://www.googleapis.com/auth/calendar.readonly'],
 	    null
 	);
-	
 	jwtClient.authorize(function (err, tokens) {
 	    if (err) {
 		console.log('Auth error : ' + err);
+		client.status(200).send(err);
 		return;
 	    }
 	});
