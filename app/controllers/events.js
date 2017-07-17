@@ -43,6 +43,10 @@ function EventsController(database)
 	    var auth = new googleAuth();
 	    var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
+	    google.options({
+		auth: oauth2Client
+	    });
+	    
 	    // Check if we have previously stored a token.
 	    fs.readFile(TOKEN_PATH, function(err, token) {
 		if (err) {
