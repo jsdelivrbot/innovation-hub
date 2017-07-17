@@ -87,7 +87,6 @@ function EventsController(database)
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
 		var date = new Date();
-		date.setHours(0, 0, 0, 0);
 		var end = new Date(date.getTime() + 86400000*2);
 		
 		this.publicGoogleCalendar.getEvents(function(err, events) {
