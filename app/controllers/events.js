@@ -152,6 +152,7 @@ function EventsController(database)
 	{
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
+		console.log('DEBUT DE EVENT');
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
