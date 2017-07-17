@@ -35,7 +35,7 @@ function HubDataController(database)
     this.currentCategory = function()
     {
 	this.count++;
-	if (this.count == 100)
+	if (this.count == 10)
 	{
 	    this.count = 0
 	    this.updateCategories();
