@@ -87,14 +87,14 @@ function EventsController(database)
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
 		var date = new Date();
-		var end = new Date(date.getTime() + 86400000*2);
+		var end = new Date(date.getTime() + 86400000*7);
 		
 		this.publicGoogleCalendar.getEvents(function(err, events) {
 		    if (err) { return console.log(err.message); }
 		    var result = [];
 		    for (var event in events)
 		    {
-			if (events[event].start > date.getTime() && events[event].start.getTime() < end.getTime())
+			if (events[event].start > date.getTime() && events[event].start.getTime() < end.getTime() && result.length < 10)
 			    result.push(events[event]);
 		    }
 		    res.setHeader("Access-Control-Allow-Origin", "*");
