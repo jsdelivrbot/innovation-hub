@@ -25,7 +25,7 @@ Models['hubData'] =
 	    category: { type: Sequelize.STRING, defaultValue: 'Undefined' },
 	    room: { type: Sequelize.STRING, defaultValue: 'Innovation Hub' },
 	    boxId: { type: Sequelize.INTEGER, defaultValue: 0},
-	    value: { type: Sequelize.INTEGER, defaultValue: -1 },
+	    value: { type: Sequelize.DOUBLE, defaultValue: -1 },
 	    unit: { type: Sequelize.STRING, defaultValue: 'Undefined'},
 	    img: { type: Sequelize.STRING, defaultValue: 'Undefined'},
 	},
