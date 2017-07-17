@@ -9,18 +9,19 @@ function HubDataController(database)
 
     // Define controller path
     this.path = 'hubData';
-
+    this.currentCategory = "temperatures";
+    
     // Define controller routes ()
     this.routes = [
 	{
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
 		var hubdata = database.getModel('hubData');
-		hubdata.findAll().then(hd => {
+		hubdata.findAll({where: {category: this.currentCategory}}).then(hd => {
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(hd));
 		});
-	    }
+	    }.bind(this)
 	},
 
 	{
