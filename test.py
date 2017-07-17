@@ -1,8 +1,8 @@
 import json
 import requests
 
-host = 'https://innovation-hub.herokuapp.com/'
-# host = 'http://localhost:5000/'
+# host = 'https://innovation-hub.herokuapp.com/'
+host = 'http://localhost:6000/'
 
 # data = {
 #     'firstName' : 'Michael',
@@ -16,7 +16,9 @@ host = 'https://innovation-hub.herokuapp.com/'
 # r = requests.post(host + 'user/create', data);
 # print(r.text);
 
-r = requests.get(host + 'event/');
+r = requests.get(host + 'hubData/update');
+print(r.text);
+r = requests.get(host + 'hubData/');
 print(r.text);
 # datas = json.loads(r.text);
 # for data in datas:
