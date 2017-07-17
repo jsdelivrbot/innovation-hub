@@ -92,6 +92,7 @@ function EventsController(database)
 		this.publicGoogleCalendar.getEvents(function(err, events) {
 		    if (err) { return console.log(err.message); }
 		    var result = [];
+		    events.reverse();
 		    for (var event in events)
 		    {
 			if (events[event].start > date.getTime() && events[event].start.getTime() < end.getTime() && result.length < 10)
