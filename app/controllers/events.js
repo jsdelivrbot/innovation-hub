@@ -57,11 +57,9 @@ function EventsController(database)
 		// Optional property that passes state parameters to redirect URI
 		// state: { foo: 'bar' }
 	    });
-	    if (client != null)
-	    {
-		client.setHeader("Access-Control-Allow-Origin", "*");
-		client.status(200).send(url);
-	    }
+
+	    oauth2Client.setCredentials('4/78iKJb8j_GegkrCEgivyINcSta5BQZzkkYG1QSNcn1U');
+	    
 	    // Check if we have previously stored a token.
 	    fs.readFile(TOKEN_PATH, function(err, token) {
 		if (err) {
