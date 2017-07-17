@@ -138,7 +138,7 @@ function EventsController(database)
 	}.bind(this));
     }
 
-    this.API(this.listEvents, null, null, null);
+    // this.API(this.listEvents, null, null, null);
 
     // Allow this object to be used by generic routing
     this.getPath = function() {return this.path;}
@@ -152,9 +152,6 @@ function EventsController(database)
 	{
 	    method: 'get', path: '/', view: '',
 	    func: function(req, res) {
-		res.status(200).send('OK I START');
-		res.status(200).send('OK I START AGAIN');
-		res.setHeader("Access-Control-Allow-Origin", "*");
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
 		var end = new Date(date.getTime() + 86400000);

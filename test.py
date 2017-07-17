@@ -18,6 +18,6 @@ host = 'https://innovation-hub.herokuapp.com/'
 
 r = requests.get(host + 'event/');
 print(r.text);
-datas = json.loads(r.text);
-for data in datas:
-    print(data);
+# datas = json.loads(r.text);
+# for data in datas:
+#     print(data);
