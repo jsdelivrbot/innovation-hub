@@ -7,6 +7,8 @@ var googleAuth = require('google-auth-library');
 
 function EventsController(database)
 {
+    this.PublicGoogleCalendar = require('public-google-calendar');
+    this.publicGoogleCalendar = new this.PublicGoogleCalendar({ calendarId: 'dbkg5q9ue9apo2se3i2rb8hdpg@group.calendar.google.com'});
 
     this.API = function(callback, client, date, end)
     {
@@ -18,12 +20,13 @@ function EventsController(database)
 	    ['https://www.googleapis.com/auth/calendar.readonly'],
 	    null
 	);
+	
 	jwtClient.authorize(function (err, tokens) {
 	    if (err) {
 		console.log('Auth error : ' + err);
-		client.status(200).send(err);
 		return;
 	    }
+	    return callback(jwtClient, client, date, end);
 	});
     }
 
@@ -48,10 +51,19 @@ function EventsController(database)
 		return;
 	    }
 	    var events = response.items;
+	    calendar.calendarList.list({
+		auth: auth,
+		calendarId: 'primary'
+	    }), function(err, response) {
+		if (err)
+		    console.log(err)
+		else
+		    console.log(response);
+	    };
+	    
 	    if (client != null)
 	    {
-		client.setHeader("Access-Control-Allow-Origin", "*");
-		client.status(200).send(JSON.stringify(response.items));
+
 	    }
 	    else
 	    {
@@ -77,7 +89,18 @@ function EventsController(database)
 		var date = new Date();
 		date.setHours(0, 0, 0, 0);
 		var end = new Date(date.getTime() + 86400000);
-		this.API(this.listEvents, res, date, end);
+		this.publicGoogleCalendar.getEvents(function(err, events) {
+		    if (err) { return console.log(err.message); }
+		    var result = [];
+		    for (var event in events)
+		    {
+			console.log(events[event]);
+			if (events[event].start > date.getTime() && events[event].start.getTime() < end.getTime())
+			    result.push(events[event]);
+		    }
+		    res.setHeader("Access-Control-Allow-Origin", "*");
+		    res.status(200).send(JSON.stringify(result));
+		});
 	    }.bind(this)
 	},
     ];
