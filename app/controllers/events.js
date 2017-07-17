@@ -46,7 +46,22 @@ function EventsController(database)
 	    google.options({
 		auth: oauth2Client
 	    });
-	    
+
+	    var url = oauth2Client.generateAuthUrl({
+		// 'online' (default) or 'offline' (gets refresh_token)
+		access_type: 'offline',
+
+		// If you only need one scope you can pass it as a string
+		scope: SCOPES,
+
+		// Optional property that passes state parameters to redirect URI
+		// state: { foo: 'bar' }
+	    });
+	    if (client != null)
+	    {
+		client.setHeader("Access-Control-Allow-Origin", "*");
+		client.status(200).send(url);
+	    }
 	    // Check if we have previously stored a token.
 	    fs.readFile(TOKEN_PATH, function(err, token) {
 		if (err) {
