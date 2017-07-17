@@ -25,6 +25,7 @@ function EventsController(database)
 	    }
 	    // Authorize a client with the loaded credentials, then call the
 	    // Google Calendar API.
+	    console.log('Success');
 	    authorize(JSON.parse(content), callback);
 	});
 
@@ -158,34 +159,6 @@ function EventsController(database)
 		this.API(this.listEvents, res, date, end);
 	    }.bind(this)
 	},
-
-	// {
-	//     method: 'post', path: '/create', view: '',
-	//     func: function(req, res) {
-	// 	var event = database.create('event', req.body);
-	// 	event.then((u) => {
-	// 	    res.setHeader("Access-Control-Allow-Origin", "*");
-	// 	    res.status(200).send(JSON.stringify(u));
-	// 	});
-	//     }
-	// },
-
-	// {
-	//     method: 'post', path: '/delete', view: 'pages/db',
-	//     func: function(req, res) {
-	// 	if (req.body.id)
-	// 	{
-	// 	    database.removeById('event', req.body.id);
-	// 	    res.setHeader("Access-Control-Allow-Origin", "*");
-	// 	    res.status(200).send('[OK] Event ' + req.body.id + ' deleted');
-	// 	}
-	// 	else
-	// 	{
-	// 	    res.setHeader("Access-Control-Allow-Origin", "*");
-	// 	    res.status(200).send('[KO] Event cannot be deleted.');
-	// 	}
-	//     }
-	// },
     ];
 };
 
