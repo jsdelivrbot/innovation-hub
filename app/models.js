@@ -42,4 +42,16 @@ Models['hubBox'] =
 	}
     }
 
+Models['events'] =
+    {
+	model: null,
+	hash: {
+	    start: { type: Sequelize.DATE},
+	    finish: {type: Sequelize.DATE},
+	    name: {type: Sequelize.STRING, defaultvalue: 'Undefined Event'},
+	    authorId: {type: Sequelize.INTEGER, defaultvalue: -1},
+	    desc: {type: Sequelize.TEXT, defaultvalue: 'Undefined'},
+	}
+    }
+
 module.exports = Models;
