@@ -86,12 +86,12 @@ function HubDataController(database)
 		{
 		    database.removeById('hubData', req.body.id);
 		    res.setHeader("Access-Control-Allow-Origin", "*");
-		    res.status(200).send('[OK] User ' + req.body.id + ' deleted');
+		    res.status(200).send('[OK] Data with id ' + req.body.id + ' deleted');
 		}
 		else
 		{
 		    res.setHeader("Access-Control-Allow-Origin", "*");
-		    res.status(200).send('[KO] User cannot be deleted.');
+		    res.status(200).send('[KO] Data cannot be deleted.');
 		}
 	    }
 	},
