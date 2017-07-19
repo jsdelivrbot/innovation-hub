@@ -72,6 +72,7 @@ function HubDataController(database)
 	    func: function(req, res) {
 		var data = database.create('hubData', req.body);
 		data.then((u) => {
+		    console.log('\nCreate ok.\n');
 		    res.setHeader("Access-Control-Allow-Origin", "*");
 		    res.status(200).send(JSON.stringify(u));
 		});
